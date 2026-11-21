@@ -1,0 +1,86 @@
+/* Belmore · ver WEBS/belmore/DESIGN.md */
+@font-face{font-family:"Instrument Serif";src:url(fonts/instrument-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Instrument Serif";src:url(fonts/instrument-400-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Manrope";src:url(fonts/manrope-var.woff2) format("woff2");font-weight:400 600;font-style:normal;font-display:swap}
+
+:root{
+  color-scheme:dark;
+  --night:#121413; --night-2:#1B1E1C; --bone:#EFEBE4; --bone-muted:#A39E95; --line:#2D312E;
+  --amber:#D9A441; --amber-hover:#E8B95E;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --wrap:76rem; --gutter:clamp(1.25rem,4vw,3rem); --section:clamp(6rem,3rem + 10vw,10rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--night);color:var(--bone);font-family:var(--sans);font-size:1.0625rem;line-height:1.65;font-size-adjust:from-font}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--amber);text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--bone);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;z-index:10;background:var(--bone);color:var(--night);padding:.5rem 1rem}
+
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1;letter-spacing:-.01em;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+em{font-style:italic;color:var(--amber)}
+.label{font-size:.8125rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-muted)}
+
+/* Cabecera, encima de la foto */
+.site-header{position:absolute;inset:0 0 auto;z-index:2}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:6rem}
+.brand img{height:2.75rem;width:auto}
+@media (min-width:48rem){.brand img{height:3.25rem}}
+.nav a{color:var(--bone);font-weight:600;font-size:.9375rem;text-decoration:none;padding-block:.5rem}
+.nav a:hover{color:var(--amber)}
+.page .site-header{position:static;border-bottom:1px solid var(--line)}
+
+/* Portada a sangre */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,20,19,.55) 0%,rgba(18,20,19,.15) 35%,rgba(18,20,19,.75) 72%,var(--night) 100%)}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-block:9rem clamp(3rem,2rem + 5vw,6rem)}
+.hero h1{margin-top:1.25rem;font-size:clamp(2.75rem,1.4rem + 5.4vw,6.5rem);line-height:.98;max-width:16ch}
+
+/* Bloques del manifiesto */
+.section{padding-block:var(--section);border-top:1px solid var(--line)}
+.big{font-family:var(--serif);font-size:clamp(2.5rem,1.3rem + 4.6vw,5.5rem);line-height:1}
+.sub{margin-top:1.5rem;font-size:clamp(1.25rem,1rem + .8vw,1.5rem);color:var(--bone-muted);max-width:30rem}
+.lines{list-style:none;margin:0;padding:0}
+.lines li{display:grid;grid-template-columns:3rem 1fr;gap:1rem;align-items:baseline;padding-block:clamp(1.75rem,1rem + 2.5vw,3rem);border-top:1px solid var(--line)}
+.lines li:last-child{border-bottom:1px solid var(--line)}
+.lines .num{font-size:.875rem;font-weight:600;letter-spacing:.08em;color:var(--bone-muted);font-variant-numeric:tabular-nums}
+.lines p{font-family:var(--serif);font-size:clamp(2rem,1.2rem + 3.4vw,4.25rem);line-height:1.02}
+.lines-head{margin-bottom:2.5rem}
+.pillars{display:flex;flex-wrap:wrap;gap:.5rem 2.5rem;margin-top:2rem;list-style:none;padding:0}
+.pillars li{font-size:clamp(1.25rem,1rem + 1vw,1.75rem);font-weight:600;letter-spacing:-.01em}
+.closing .big{font-size:clamp(3rem,1.5rem + 6vw,7rem)}
+.btn{display:inline-flex;align-items:center;min-height:3.25rem;margin-top:2.5rem;padding:0 1.75rem;background:var(--amber);color:var(--night);font-weight:600;text-decoration:none}
+.btn:hover{background:var(--amber-hover)}
+
+/* Aparición ligada al scroll: decorativa, solo si el navegador la soporta y sin "reduced motion" */
+@media (prefers-reduced-motion:no-preference){
+  @supports ((animation-timeline:view()) and (animation-range:entry)){
+    @keyframes rise{from{opacity:0;translate:0 2.5rem}}
+    .reveal{animation:rise auto linear backwards;animation-timeline:view();animation-range:entry 0% entry 80%}
+  }
+}
+
+/* Pie */
+.site-footer{border-top:1px solid var(--line);padding-block:4rem 2.5rem;background:var(--night-2)}
+.site-footer .top{display:grid;gap:2rem}
+@media (min-width:56rem){.site-footer .top{grid-template-columns:7fr 5fr;gap:4rem;align-items:end}}
+.mail{display:inline-block;max-width:100%;margin-top:.75rem;font-family:var(--serif);font-size:clamp(1.75rem,1rem + 3vw,3.25rem);line-height:1.1;color:var(--bone);text-decoration:none;overflow-wrap:anywhere}
+.mail:hover{color:var(--amber)}
+.address{font-style:normal;color:var(--bone-muted)}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem 2rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.875rem;color:var(--bone-muted)}
+.legal ul{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;list-style:none;margin:0;padding:0}
+.legal a{color:var(--bone-muted)}
+
+/* Páginas legales */
+.prose{max-width:42rem;padding-block:clamp(3rem,2rem + 4vw,5rem)}
+.prose h1{font-size:clamp(2.5rem,1.5rem + 3vw,4rem)}
+.prose h2{font-family:var(--sans);font-size:1.125rem;font-weight:600;margin-top:2.5rem}
+.prose p{margin-top:1rem;color:var(--bone)}
+.prose .back{display:inline-block;margin-bottom:2rem;font-weight:600}
